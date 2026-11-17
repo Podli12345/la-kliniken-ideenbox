@@ -370,14 +370,14 @@ export function loginPage() {
         <h2>${escapeHtml(t("login.heading"))}</h2>
         <p class="hint">${escapeHtml(t("login.accounts"))}</p>
         <ul class="accounts">
-          <li><code>mitarbeiter</code> / <code>demo</code></li>
-          <li><code>moderation</code> / <code>demo</code></li>
-          <li><code>admin</code> / <code>demo</code></li>
+          <li><code>mitarbeiter</code> / <code>Ideenbox-LA</code></li>
+          <li><code>moderation</code> / <code>Ideenbox-LA</code></li>
+          <li><code>admin</code> / <code>Ideenbox-LA</code></li>
         </ul>
         <form id="login-form" class="stack" autocomplete="off">
           <p id="form-error" class="field-error" role="alert"></p>
           <label>${escapeHtml(t("login.user"))}<input name="username" autocomplete="username" required placeholder="mitarbeiter"></label>
-          <label>${escapeHtml(t("login.password"))}<input name="password" type="password" autocomplete="current-password" required placeholder="demo"></label>
+          <label>${escapeHtml(t("login.password"))}<input name="password" type="password" autocomplete="current-password" required placeholder="Ideenbox-LA"></label>
           <button class="button" type="submit">${escapeHtml(t("login.submit"))}</button>
         </form>
       </section>

@@ -3,7 +3,7 @@
 export const PROTOTYPE_WARNING =
   "Prototyp – nur Demodaten, keine echten Ideen oder personenbezogenen Daten eingeben";
 
-export const DEMO_PASSWORD = "demo";
+export const DEMO_PASSWORD = "Ideenbox-LA";
 export const SLA_DAYS = 30;
 export const K_ANONYMITY = 5;
 export const STORAGE_PREFIX = "kvlandshut.ideenbox.v1";
@@ -110,21 +110,21 @@ export const SAVINGS_NOTICE =
 export const DEMO_USERS = [
   {
     username: "mitarbeiter",
-    password: "demo",
+    password: "Ideenbox-LA",
     role: "mitarbeit",
     areas: [],
     pseudonym: "Idee-Fuchs-4821",
   },
   {
     username: "moderation",
-    password: "demo",
+    password: "Ideenbox-LA",
     role: "moderation",
     areas: ["material", "einkauf", "energie", "prozesse", "patientenfluss", "dokumentation"],
     pseudonym: "Idee-Kiebitz-5050",
   },
   {
     username: "admin",
-    password: "demo",
+    password: "Ideenbox-LA",
     role: "admin",
     areas: CATEGORIES.map((item) => item.id),
     pseudonym: "Idee-Alk-3033",

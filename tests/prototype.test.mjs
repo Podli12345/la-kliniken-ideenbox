@@ -57,7 +57,7 @@ test("Spardrucktexte und Übersetzungsdateien", () => {
 
 test("Demodaten ohne Personenmerkmale in der öffentlichen Idee", async () => {
   const repo = fresh();
-  await repo.login({ username: "mitarbeiter", password: "demo" });
+  await repo.login({ username: "mitarbeiter", password: "Ideenbox-LA" });
   const ideas = await repo.listIdeas();
   assert.equal(ideas.length, 18);
   for (const idea of ideas) {
@@ -75,7 +75,7 @@ test("Demodaten ohne Personenmerkmale in der öffentlichen Idee", async () => {
 
 test("Fristen, Ähnlichkeit nur in derselben Sprache, Schutzregeln", async () => {
   const repo = fresh();
-  await repo.login({ username: "mitarbeiter", password: "demo" });
+  await repo.login({ username: "mitarbeiter", password: "Ideenbox-LA" });
   const ideas = await repo.listIdeas();
   const byId = Object.fromEntries(ideas.map((idea) => [idea.id, idea]));
   assert.equal(byId["idea-16"].due.days, -16);
@@ -107,27 +107,27 @@ test("Fristen, Ähnlichkeit nur in derselben Sprache, Schutzregeln", async () =>
 
 test("Kommentarregeln, Meldung, Ausblenden und Vorprüfung", async () => {
   const repo = fresh();
-  await repo.login({ username: "mitarbeiter", password: "demo" });
+  await repo.login({ username: "mitarbeiter", password: "Ideenbox-LA" });
   await assert.rejects(() => repo.addComment("idea-04", "Die Zählung über eine Woche wäre hilfreich."), (error) => error.code === "rules");
   const comment = await repo.addComment("idea-04", "Die Zählung über eine Woche wäre hilfreich.", true);
   assert.equal(comment.status, "visible");
   await repo.reportComment("idea-04", comment.id);
   await repo.logout();
-  await repo.login({ username: "moderation", password: "demo" });
+  await repo.login({ username: "moderation", password: "Ideenbox-LA" });
   await repo.setCommentStatus("idea-04", comment.id, "hidden");
   await repo.logout();
-  await repo.login({ username: "admin", password: "demo" });
+  await repo.login({ username: "admin", password: "Ideenbox-LA" });
   await repo.setPremoderation(true);
   await repo.logout();
-  await repo.login({ username: "mitarbeiter", password: "demo" });
+  await repo.login({ username: "mitarbeiter", password: "Ideenbox-LA" });
   const pending = await repo.addComment("idea-06", "Die Notfallregel sollte bleiben.");
   assert.equal(pending.pending, true);
   await repo.logout();
-  await repo.login({ username: "moderation", password: "demo" });
+  await repo.login({ username: "moderation", password: "Ideenbox-LA" });
   const visibleToOther = await repo.getIdea("idea-06");
   assert.ok(visibleToOther.comments.some((item) => item.status === "pending"));
   await repo.logout();
-  await repo.login({ username: "mitarbeiter", password: "demo" });
+  await repo.login({ username: "mitarbeiter", password: "Ideenbox-LA" });
   const own = await repo.getIdea("idea-06");
   assert.ok(own.comments.some((item) => item.status === "pending" && item.mine));
 });
@@ -135,7 +135,7 @@ test("Kommentarregeln, Meldung, Ausblenden und Vorprüfung", async () => {
 test("Moderation, Ablehnung mit Dank und k-Anonymität", async () => {
   const repo = fresh();
   await assert.rejects(() => repo.login({ username: "mitarbeiter", password: "falsch" }), (error) => error.code === "bad-login");
-  await repo.login({ username: "moderation", password: "demo" });
+  await repo.login({ username: "moderation", password: "Ideenbox-LA" });
   await assert.rejects(() => repo.moderateIdea("idea-15", {
     status: "in_pruefung",
     category: "personal",
@@ -160,7 +160,7 @@ test("Moderation, Ablehnung mit Dank und k-Anonymität", async () => {
   assert.match(saved.feedback, /^Vielen Dank/);
   assert.equal(saved.feedbackBy, undefined);
   await repo.logout();
-  await repo.login({ username: "admin", password: "demo" });
+  await repo.login({ username: "admin", password: "Ideenbox-LA" });
   const stats = await repo.adminStats();
   assert.equal(stats.realizedSavings, 24700);
   assert.equal(stats.activeIdeas, 17);
@@ -185,7 +185,7 @@ test("Moderation, Ablehnung mit Dank und k-Anonymität", async () => {
 
 test("Sortierung und Zurücksetzen", async () => {
   const repo = fresh();
-  await repo.login({ username: "admin", password: "demo" });
+  await repo.login({ username: "admin", password: "Ideenbox-LA" });
   const ideas = await repo.listIdeas();
   const { filterIdeas } = await import("../js/filter.js");
   assert.equal(filterIdeas(ideas, { sort: "new" })[0].id, "idea-11");

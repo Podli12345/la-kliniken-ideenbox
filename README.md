@@ -34,7 +34,7 @@ npm test
 
 ## Demo-Zugänge
 
-Passwort jeweils `demo`. Das Passwort schützt nichts.
+Passwort jeweils `Ideenbox-LA`. Das Passwort schützt nichts.
 
 | Benutzername | Rolle | Was die Person sieht |
 | --- | --- | --- |
